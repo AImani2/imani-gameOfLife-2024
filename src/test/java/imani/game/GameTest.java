@@ -31,6 +31,21 @@ public class GameTest {
     }
 
     @Test
+    public void countLiveNeighbors() {
+        //given
+        Grid grid = new Grid(3,3);
+
+        //when
+        grid.enliven(1, 0);
+        grid.enliven(0, 1);
+        grid.enliven(2, 1);
+        grid.enliven(1, 2);
+
+        //then
+        assertEquals(4, grid.countLiveNeighbors(1,1));
+    }
+
+    @Test
     public void nextGen() {
         //given
         Grid grid = new Grid(3,3);
