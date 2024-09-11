@@ -49,6 +49,27 @@ public class Grid {
     }
 
     public void nextGen() {
+        int[][] newGameBoard = new int[gameBoard.length][gameBoard[0].length];
 
+        for (int x = 0; x < gameBoard.length; x++) {
+            for (int y = 0; y < gameBoard[x].length; y++) {
+
+                int liveNeighbors = countLiveNeighbors(x, y);
+
+                if (gameBoard[x][y] == 1) {
+                    if (liveNeighbors < 2 || liveNeighbors > 3) {
+                        newGameBoard[x][y] = 0;
+                    } else {
+                        newGameBoard[x][y] = 1;
+                    }
+                } else {
+                    if (liveNeighbors == 3) {
+                        newGameBoard[x][y] = 1;
+                    }
+                }
+            }
+        }
+
+        gameBoard = newGameBoard;
     }
 }

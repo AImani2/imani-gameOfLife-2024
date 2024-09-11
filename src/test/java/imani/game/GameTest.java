@@ -9,7 +9,7 @@ public class GameTest {
     @Test
     public void string() {
         //given
-        Grid grid = new Grid(3,3);
+        Grid grid = new Grid(3, 3);
 
         //when
         String actual = grid.toString();
@@ -21,7 +21,7 @@ public class GameTest {
     @Test
     public void enliven() {
         //given
-        Grid grid = new Grid(3,3);
+        Grid grid = new Grid(3, 3);
 
         //when
         grid.enliven(1, 0);
@@ -33,7 +33,7 @@ public class GameTest {
     @Test
     public void countLiveNeighbors() {
         //given
-        Grid grid = new Grid(3,3);
+        Grid grid = new Grid(3, 3);
 
         //when
         grid.enliven(1, 0);
@@ -42,16 +42,16 @@ public class GameTest {
         grid.enliven(1, 2);
 
         //then
-        assertEquals(4, grid.countLiveNeighbors(1,1));
+        assertEquals(4, grid.countLiveNeighbors(1, 1));
     }
 
     @Test
     public void nextGen() {
         //given
-        Grid grid = new Grid(3,3);
-        grid.enliven(0,1);
-        grid.enliven(1,1);
-        grid.enliven(2,1);
+        Grid grid = new Grid(3, 3);
+        grid.enliven(0, 1);
+        grid.enliven(1, 1);
+        grid.enliven(2, 1);
 
         //when
         grid.nextGen();
