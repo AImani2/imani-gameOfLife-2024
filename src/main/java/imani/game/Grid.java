@@ -32,13 +32,17 @@ public class Grid {
 
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
-                if (i == 0 && j == 0) continue;
+                if (i == 0 && j == 0) {
+                    continue;
+                }
 
                 int neighborX = x + i;
                 int neighborY = y + j;
 
-                if (neighborX >= 0 && neighborX < gameBoard.length &&
-                        neighborY >= 0 && neighborY < gameBoard[0].length) {
+                if (neighborX >= 0
+                        && neighborX < gameBoard.length
+                        && neighborY >= 0
+                        && neighborY < gameBoard[0].length) {
                     liveNeighbors += gameBoard[neighborX][neighborY];
                 }
 
