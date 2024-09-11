@@ -60,17 +60,10 @@ public class Grid {
 
                 int liveNeighbors = countLiveNeighbors(x, y);
 
-                if (gameBoard[x][y] == 1) {
-                    if (liveNeighbors < 2 || liveNeighbors > 3) {
-                        newGameBoard[x][y] = 0;
-                    } else {
-                        newGameBoard[x][y] = 1;
-                    }
-                } else {
-                    if (liveNeighbors == 3) {
-                        newGameBoard[x][y] = 1;
-                    }
+                if (liveNeighbors == 3 || (gameBoard[x][y] == 1 && liveNeighbors == 2)) {
+                    newGameBoard[x][y] = 1;
                 }
+
             }
         }
 
