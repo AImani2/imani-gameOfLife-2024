@@ -3,6 +3,10 @@ package imani.game;
 public class Grid {
     private int[][] gameBoard;
 
+    public int[][] getGameBoard() {
+        return gameBoard;
+    }
+
     public Grid(int width, int height) {
         gameBoard = new int[width][height];
     }
@@ -19,7 +23,12 @@ public class Grid {
         return builder.toString();
     }
 
+    public void enliven(int x, int y) {
+        gameBoard[y][x] = 1;
+    }
+
     public Grid nextGen() {
         //write this method here
+        ;
     }
 }
