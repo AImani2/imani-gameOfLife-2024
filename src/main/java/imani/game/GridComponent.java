@@ -75,12 +75,6 @@ public class GridComponent extends JComponent {
         for (int i = 0; i <= gameBoard[0].length; i++) {
             g.drawLine(0, i * cellSize, gameBoard.length * cellSize, i * cellSize);
         }
-
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public void nextGeneration() {
@@ -90,6 +84,10 @@ public class GridComponent extends JComponent {
 
     public void play() {
         tima.start();
+    }
+
+    public void pause() {
+        tima.stop();
     }
 }
 

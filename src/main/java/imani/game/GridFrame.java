@@ -25,14 +25,23 @@ public class GridFrame extends JFrame {
         JPanel buttons = new JPanel();
         JButton playButton = new JButton("Play");
         JButton nextButton = new JButton("Next");
+        JButton pauseButton = new JButton("Pause");
         add(buttons, BorderLayout.SOUTH);
         buttons.add(playButton);
+        buttons.add(pauseButton);
         buttons.add(nextButton);
 
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gridComponent.play();
+            }
+        });
+
+        pauseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gridComponent.pause();
             }
         });
 
