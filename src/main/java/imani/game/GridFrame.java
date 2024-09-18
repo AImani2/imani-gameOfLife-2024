@@ -39,8 +39,12 @@ public class GridFrame extends JFrame {
                 int x3 = x1;
                 int y3 = y1;
 
-                int[] xPoints = {x1, x2, x3};
-                int[] yPoints = {y1, y2, y3};
+                int[] xPoints = {
+                        x1, x2, x3
+                };
+                int[] yPoints = {
+                        y1, y2, y3
+                };
 
                 g2.setColor(Color.BLACK);
                 g2.fillPolygon(xPoints, yPoints, 3);
