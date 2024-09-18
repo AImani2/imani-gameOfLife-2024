@@ -59,9 +59,9 @@ public class GridComponent extends JComponent {
         for (int y = 0; y < gameBoard.length; y++) {
             for (int x = 0; x < gameBoard[y].length; x++) {
                 if (gameBoard[y][x] == 1) {
-                    g.setColor(Color.BLACK);
+                    g.setColor(Color.PINK);
                 } else {
-                    g.setColor(Color.WHITE);
+                    g.setColor(Color.LIGHT_GRAY);
                 }
 
                 g.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
