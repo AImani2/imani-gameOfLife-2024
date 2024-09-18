@@ -1,7 +1,9 @@
 package imani.game;
 
-import javax.swing.JComponent;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -9,6 +11,13 @@ public class GridComponent extends JComponent {
 
     private final Grid grid;
     private final int cellSize = 20;
+    private Timer tima = new Timer(1000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            grid.nextGen();
+            repaint();
+        }
+    });
 
     public GridComponent(Grid grid) {
         this.grid = grid;
@@ -77,6 +86,10 @@ public class GridComponent extends JComponent {
     public void nextGeneration() {
         grid.nextGen();
         repaint();
+    }
+
+    public void play() {
+        tima.start();
     }
 }
 
