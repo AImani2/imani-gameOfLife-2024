@@ -25,18 +25,15 @@ public class GridFrame extends JFrame {
         add(gridComponent, BorderLayout.CENTER);
         JPanel buttons = new JPanel();
         JButton playButton = new JButton("Play");
-        JButton nextButton = new JButton("Next");
-        JButton pauseButton = new JButton("Pause");
-        add(buttons, BorderLayout.SOUTH);
         buttons.add(playButton);
+        JButton nextButton = new JButton("Next");
         buttons.add(nextButton);
+        JButton pauseButton = new JButton("Pause");
         buttons.add(pauseButton);
-
+        add(buttons, BorderLayout.SOUTH);
 
         playButton.addActionListener(e -> gridComponent.play());
-
         pauseButton.addActionListener(e -> gridComponent.pause());
-
         nextButton.addActionListener(e -> gridComponent.nextGeneration());
 
         setSize(grid.getGameBoard().length * 20, grid.getGameBoard()[0].length * 20);
