@@ -31,7 +31,7 @@ public class GameTest {
     }
 
     @Test
-    public void importRLE() {
+    public void importRle() {
 
     }
 
