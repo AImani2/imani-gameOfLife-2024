@@ -30,9 +30,10 @@ public class Grid {
         gameBoard[y][x] = 1;
     }
 
-    public void importRLE(String rle) {
+    public void importRle(String rle) {
         String[] lines = rle.split("\n");
-        int x = 0, y = 0;
+        int x = 0;
+        int y = 0;
 
         for (String line : lines) {
             if (line.startsWith("#")) {
@@ -58,7 +59,7 @@ public class Grid {
 
                     switch (character) {
                         case 'b':
-                            x+= count;
+                            x += count;
                             break;
                         case 'o':
                             for (int i = 0; i < count; i++) {
@@ -74,6 +75,8 @@ public class Grid {
                             break;
                         case '!':
                             return;
+                        default:
+                            throw new IllegalArgumentException("Unexpected character: " + character);
                     }
                 }
             }

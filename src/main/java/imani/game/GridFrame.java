@@ -2,8 +2,6 @@ package imani.game;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -31,8 +29,9 @@ public class GridFrame extends JFrame {
         JButton pauseButton = new JButton("Pause");
         add(buttons, BorderLayout.SOUTH);
         buttons.add(playButton);
-        buttons.add(pauseButton);
         buttons.add(nextButton);
+        buttons.add(pauseButton);
+
 
         playButton.addActionListener(e -> gridComponent.play());
 
@@ -53,14 +52,14 @@ public class GridFrame extends JFrame {
             try {
                 String rleData = new String(Files.readAllBytes(rleFile.toPath()));
 
-                Grid grid = new Grid(40,40);
-                grid.importRLE(rleData);
+                Grid grid = new Grid(40, 40);
+                grid.importRle(rleData);
 
                 SwingUtilities.invokeLater(() -> {
                     new GridFrame(grid).setVisible(true);
                 });
             } catch (IOException e) {
-                System.err.println("Error reading RLE file: " + e.getMessage());
+                e.printStackTrace();
             }
         } else {
             System.out.println("Usage: java imani.game.GridFrame <path_to_rle_file>");
