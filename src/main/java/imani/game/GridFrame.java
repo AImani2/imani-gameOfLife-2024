@@ -4,17 +4,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import javax.swing.JFrame;
 
 public class GridFrame extends JFrame {
 
     private final GridComponent gridComponent;
 
-    public GridFrame() {
+    public GridFrame(Grid grid) {
 
         setTitle("Conway's Game of Life");
 
-        Grid grid = new Grid(40, 40);
+        //Grid grid = new Grid(40, 40);
 
         gridComponent = new GridComponent(grid);
         add(gridComponent);
@@ -31,26 +34,11 @@ public class GridFrame extends JFrame {
         buttons.add(pauseButton);
         buttons.add(nextButton);
 
-        playButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gridComponent.play();
-            }
-        });
+        playButton.addActionListener(e -> gridComponent.play());
 
-        pauseButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gridComponent.pause();
-            }
-        });
+        pauseButton.addActionListener(e -> gridComponent.pause());
 
-        nextButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gridComponent.nextGeneration();
-            }
-        });
+        nextButton.addActionListener(e -> gridComponent.nextGeneration());
 
         setSize(grid.getGameBoard().length * 20, grid.getGameBoard()[0].length * 20);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,7 +46,26 @@ public class GridFrame extends JFrame {
 
     public static void main(String[] args) {
 
-        new GridFrame().setVisible(true);
+        if (args.length > 0) {
+            String filePath = args[0];
+            File rleFile = new File(filePath);
+
+            try {
+                String rleData = new String(Files.readAllBytes(rleFile.toPath()));
+
+                Grid grid = new Grid(40,40);
+                grid.importRLE(rleData);
+
+                SwingUtilities.invokeLater(() -> {
+                    new GridFrame(grid).setVisible(true);
+                });
+            } catch (IOException e) {
+                System.err.println("Error reading RLE file: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Usage: java imani.game.GridFrame <path_to_rle_file>");
+        }
+
     }
 }
 
