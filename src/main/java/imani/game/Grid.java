@@ -58,6 +58,8 @@ public class Grid {
                     num.setLength(0);
 
                     switch (character) {
+                        default:
+                            throw new IllegalArgumentException("Unexpected character: " + character);
                         case 'b':
                             x += count;
                             break;
@@ -75,8 +77,6 @@ public class Grid {
                             break;
                         case '!':
                             return;
-                        default:
-                            throw new IllegalArgumentException("Unexpected character: " + character);
                     }
                 }
             }
