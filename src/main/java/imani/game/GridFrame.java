@@ -56,7 +56,7 @@ public class GridFrame extends JFrame {
                     new GridFrame(grid).setVisible(true);
                 });
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Error: " + e.getMessage());
             }
         } else {
             System.out.println("Usage: java imani.game.GridFrame <path_to_rle_file>");
