@@ -55,6 +55,7 @@ public class Grid {
                     x = 0;
                     y = 0;
                 }
+                continue;
             }
 
             StringBuilder num = new StringBuilder();
