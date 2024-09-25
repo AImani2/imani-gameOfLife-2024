@@ -31,7 +31,11 @@ public class GridComponent extends JComponent {
 
 
                 if (x < grid.getGameBoard().length && y < grid.getGameBoard()[0].length) {
-                    grid.enliven(x, y);
+                    if (grid.isAlive(x, y)) {
+                        grid.kill(x, y);
+                    } else {
+                        grid.enliven(x, y);
+                    }
                     repaint();
                 }
             }

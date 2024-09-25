@@ -26,6 +26,14 @@ public class Grid {
         return builder.toString();
     }
 
+    public boolean isAlive(int x, int y) {
+        return gameBoard[x][y] == 1;
+    }
+
+    public void kill(int x, int y) {
+        gameBoard[x][y] = 1;
+    }
+
     public void enliven(int x, int y) {
         gameBoard[y][x] = 1;
     }

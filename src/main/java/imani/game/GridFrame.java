@@ -15,8 +15,6 @@ public class GridFrame extends JFrame {
 
         setTitle("Conway's Game of Life");
 
-        //Grid grid = new Grid(40, 40);
-
         gridComponent = new GridComponent(grid);
         add(gridComponent);
 
@@ -59,7 +57,8 @@ public class GridFrame extends JFrame {
                 System.out.println("Error: " + e.getMessage());
             }
         } else {
-            System.out.println("Usage: java imani.game.GridFrame <path_to_rle_file>");
+            Grid grid = new Grid(40, 40);
+            new GridFrame(grid).setVisible(true);
         }
 
     }
