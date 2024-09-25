@@ -1,5 +1,8 @@
 package imani.game;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Grid {
     private int[][] gameBoard;
 
@@ -23,8 +26,71 @@ public class Grid {
         return builder.toString();
     }
 
+    public boolean isAlive(int x, int y) {
+        return gameBoard[x][y] == 1;
+    }
+
+    public void kill(int x, int y) {
+        gameBoard[x][y] = 1;
+    }
+
     public void enliven(int x, int y) {
         gameBoard[y][x] = 1;
+    }
+
+    public void importRle(String rle) {
+        String[] lines = rle.split("\n");
+        int x = 0;
+        int y = 0;
+
+        for (String line : lines) {
+            if (line.startsWith("#")) {
+                continue;
+            }
+
+            if (line.startsWith("x")) {
+                Pattern pattern = Pattern.compile("x = (\\d+), y = (\\d+), rule = (.+)");
+                Matcher matcher = pattern.matcher(line);
+                if (matcher.find()) {
+                    x = 0;
+                    y = 0;
+                }
+                continue;
+            }
+
+            StringBuilder num = new StringBuilder();
+            for (char character : line.toCharArray()) {
+                if (Character.isDigit(character)) {
+                    num.append(character);
+                } else {
+                    int count = num.length() > 0 ? Integer.parseInt(num.toString()) : 1;
+                    num.setLength(0);
+
+                    switch (character) {
+                        default:
+                            throw new IllegalArgumentException("Unexpected character: " + character);
+                        case 'b':
+                            x += count;
+                            break;
+                        case 'o':
+                            for (int i = 0; i < count; i++) {
+                                if (x < gameBoard[0].length && y < gameBoard.length) {
+                                    gameBoard[y][x] = 1;
+                                    x++;
+                                }
+                            }
+                            break;
+                        case '$':
+                            y++;
+                            x = 0;
+                            break;
+                        case '!':
+                            return;
+                    }
+                }
+            }
+
+        }
     }
 
     protected int countLiveNeighbors(int x, int y) {

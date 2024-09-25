@@ -31,6 +31,23 @@ public class GameTest {
     }
 
     @Test
+    public void importRle() {
+        //given
+        Grid grid = new Grid(7, 7);
+        String rle = "#N 1 beacon\n"
+                + "#C Approximately the 32nd-most common oscillator.\n"
+                + "#C www.conwaylife.com/wiki/index.php?title=1_beacon\n"
+                + "x = 7, y = 7, rule = b3/s23\n"
+                + "2b2o3b$bobo3b$o2bob2o$2obo2bo$bobo3b$bo2bo2b$2b2o!";
+
+        //when
+        grid.importRle(rle);
+
+        //then
+        assertEquals("0011000\n0101000\n1001011\n1101001\n0101000\n0100100\n0011000\n", grid.toString());
+    }
+
+    @Test
     public void countLiveNeighbors() {
         //given
         Grid grid = new Grid(3, 3);
