@@ -2,6 +2,9 @@ package imani.game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,6 +13,8 @@ import javax.swing.JFrame;
 public class GridFrame extends JFrame {
 
     private final GridComponent gridComponent;
+
+    private RleImporter rleImporter = new RleImporter();
 
     public GridFrame(Grid grid) {
 
@@ -28,39 +33,41 @@ public class GridFrame extends JFrame {
         buttons.add(nextButton);
         JButton pauseButton = new JButton("Pause");
         buttons.add(pauseButton);
+        JButton pasteButton = new JButton("Paste");
+        buttons.add(pasteButton);
+        JButton speedButton = new JButton("Speed Mode");
+        buttons.add(speedButton);
         add(buttons, BorderLayout.SOUTH);
 
         playButton.addActionListener(e -> gridComponent.play());
         pauseButton.addActionListener(e -> gridComponent.pause());
         nextButton.addActionListener(e -> gridComponent.nextGeneration());
+        pasteButton.addActionListener(e -> gridComponent.paste());
+        speedButton.addActionListener(e -> gridComponent.speed());
 
-        setSize(grid.getGameBoard().length * 20, grid.getGameBoard()[0].length * 20);
+        int gridWidth = Math.max(grid.getGameBoard().length, 100);
+        int gridHeight = Math.max(grid.getGameBoard()[0].length, 100);
+
+        pack();
+        Insets insets = getInsets();
+
+        int cellSize = 9;
+
+        int width = (gridWidth * cellSize) + insets.left + insets.right;
+        int height = (gridHeight * cellSize) + insets.top + insets.bottom + buttons.getPreferredSize().height;
+
+        setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 
     public static void main(String[] args) {
-
-        if (args.length > 0) {
-            String filePath = args[0];
-            File rleFile = new File(filePath);
-
-            try {
-                String rleData = new String(Files.readAllBytes(rleFile.toPath()));
-
-                Grid grid = new Grid(40, 40);
-                grid.importRle(rleData);
-
-                SwingUtilities.invokeLater(() -> {
-                    new GridFrame(grid).setVisible(true);
-                });
-            } catch (IOException e) {
-                System.out.println("Error: " + e.getMessage());
-            }
-        } else {
-            Grid grid = new Grid(40, 40);
-            new GridFrame(grid).setVisible(true);
-        }
-
+        SwingUtilities.invokeLater(() -> {
+            Grid grid = new Grid(100, 100);
+            GridFrame frame = new GridFrame(grid);
+            frame.setVisible(true);
+        });
     }
+
 }
 

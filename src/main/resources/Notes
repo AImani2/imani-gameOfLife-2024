@@ -1,0 +1,45 @@
+When working with outside sources, think in terms of the lowest common denominator.
+
+1. Local file
+2. Url
+3. String
+
+most simple way is often the best way to do things.
+make an rle parser using a string - the easiest way to do this.
+
+single responsibility principle:
+each class has only one responsibility.
+parse your files in a separate class.
+however, you now need a grid in your test as well as a call to the parser.
+each test should only test one thing.
+coupling - two pieces of code tightly coupled together when they do not need to be.
+rleParser needs to know what a grid is.
+have it return the grid, not take in the grid.
+if you need a grid to test the rleparser, then you should create a mock for the grid.
+so I would create a grid inside the method rleParser and then return grid - that is the best way to do that.
+not having the grid be created outside the parser and then passing it as a parameter.
+
+within my code - accessing everything through a 2 dimensional array
+outside of my class - accessing everything through grid
+
+homework:
+
+have a min for your grid size - 100
+center the life - 50, 50 is the center
+load rle from clipboard on the UI. access the computers clipboard.
+either a filepath, url, or contents of file.
+
+have to understand the code you are copying. i should be able to redo the assignment on my own now without any help.
+learning through doing the homework is the goal.
+
+the best way to read a file - not line by line.
+especially if i am saving the contents it does not make sense to do it line by line.
+if evaluating line by line its okay.
+read it as such:
+readAllBytes will not work for a url or clipboard.
+load apache library - add it into the dependencies.
+can load libraries because they can really add lots of things which you can do it java.
+
+does it all in one shot
+
+regex:
