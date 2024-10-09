@@ -43,7 +43,7 @@ public class GridFrame extends JFrame {
         pauseButton.addActionListener(e -> gridComponent.pause());
         nextButton.addActionListener(e -> gridComponent.nextGeneration());
         pasteButton.addActionListener(e -> gridComponent.paste());
-        speedButton.addActionListener( e -> gridComponent.speed());
+        speedButton.addActionListener(e -> gridComponent.speed());
 
         int gridWidth = Math.max(grid.getGameBoard().length, 100);
         int gridHeight = Math.max(grid.getGameBoard()[0].length, 100);

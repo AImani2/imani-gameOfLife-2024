@@ -35,7 +35,7 @@ public class RleImporter {
     }
 
     private static void importRleFromUrl(String urlString) throws IOException {
-        String rleData = getRleFromURL(urlString);
+        String rleData = getRleFromUrl(urlString);
         applyRleToGrid(rleData);
     }
 
@@ -48,7 +48,7 @@ public class RleImporter {
         applyRleToGrid(rleText);
     }
 
-    private static String getRleFromURL(String urlString) throws IOException {
+    private static String getRleFromUrl(String urlString) throws IOException {
         try (InputStream in = new URL(urlString).openStream()) {
             return IOUtils.toString(in, "UTF-8");
         }
@@ -70,7 +70,7 @@ public class RleImporter {
         int patternWidth = 0;
         int patternHeight = 0;
 
-        for(String line: lines) {
+        for (String line : lines) {
             if (line.startsWith("x")) {
                 Pattern pattern = Pattern.compile("x = (\\d+), y = (\\d+), rule = (.+)");
                 Matcher matcher = pattern.matcher(line);
