@@ -2,15 +2,18 @@ package imani.game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
 public class GridComponent extends JComponent {
 
-    private final Grid grid;
-    private final int cellSize = 20;
+    private Grid grid;
+    private final int cellSize = 9;
     private Timer tima = new Timer(1000, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -87,11 +90,28 @@ public class GridComponent extends JComponent {
     }
 
     public void play() {
+        tima.setDelay(1000);
         tima.start();
     }
 
     public void pause() {
         tima.stop();
+    }
+
+    public void paste() {
+        try {
+            RleImporter.importFromClipboard();
+            this.grid = RleImporter.getGrid();
+            repaint();
+        } catch (UnsupportedFlavorException | IOException e) {
+            System.out.println("Error importing RLE: " + e.getMessage());
+        }
+    }
+
+    public void speed() {
+        tima.stop();
+        tima.setDelay(400);
+        tima.start();
     }
 }
 
