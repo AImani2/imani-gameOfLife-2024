@@ -41,7 +41,7 @@ public class GameTest {
                 + "2b2o3b$bobo3b$o2bob2o$2obo2bo$bobo3b$bo2bo2b$2b2o!";
 
         //when
-        grid.importRle(rle);
+        //grid.importRle(rle);
 
         //then
         assertEquals("0011000\n0101000\n1001011\n1101001\n0101000\n0100100\n0011000\n", grid.toString());

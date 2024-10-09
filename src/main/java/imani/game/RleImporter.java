@@ -2,7 +2,6 @@ package imani.game;
 
 import org.apache.commons.io.IOUtils;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -11,7 +10,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.nio.file.Files;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,24 +18,23 @@ public class RleImporter {
     private static Grid grid = new Grid(100, 100);
 
     public static void importFromClipboard() throws UnsupportedFlavorException, IOException {
-        String clipboardText = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
+        String clipboardText
+                = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
 
         if (clipboardText == null || clipboardText.isEmpty()) {
             throw new IOException("Clipboard is empty or does not contain valid data.");
         }
 
         if (clipboardText.startsWith("http://") || clipboardText.startsWith("https://")) {
-            importRleFromURL(clipboardText);
-        }
-        else if (new File(clipboardText).exists()) {
+            importRleFromUrl(clipboardText);
+        } else if (new File(clipboardText).exists()) {
             importRleFromFile(clipboardText);
-        }
-        else {
+        } else {
             importRleFromText(clipboardText);
         }
     }
 
-    private static void importRleFromURL(String urlString) throws IOException {
+    private static void importRleFromUrl(String urlString) throws IOException {
         String rleData = getRleFromURL(urlString);
         applyRleToGrid(rleData);
     }
