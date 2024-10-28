@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 
 public class RleImporter {
 
-    private static Grid grid = new Grid(100, 100);
+    private static GameOfLife grid = new GameOfLife(100, 100);
 
     public static void importFromClipboard() throws UnsupportedFlavorException, IOException {
         String clipboardText
@@ -64,7 +64,7 @@ public class RleImporter {
         grid = parseRle(rle);
     }
 
-    public static Grid parseRle(String rle) {
+    public static GameOfLife parseRle(String rle) {
         String[] lines = rle.split("\n");
 
         int patternWidth = 0;
@@ -112,7 +112,7 @@ public class RleImporter {
                                 int newX = x + offsetX;
                                 int newY = y + offsetY;
                                 if (newX < grid.getGameBoard()[0].length && newY < grid.getGameBoard().length) {
-                                    grid.enliven(newX, newY);
+                                    grid.setCell(newX, newY, 1);
                                     x++;
                                 }
                             }
@@ -132,7 +132,7 @@ public class RleImporter {
         return grid;
     }
 
-    public static Grid getGrid() {
+    public static GameOfLife getGrid() {
         return grid;
     }
 

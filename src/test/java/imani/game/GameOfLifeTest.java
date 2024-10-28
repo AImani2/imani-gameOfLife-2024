@@ -33,7 +33,6 @@ public class GameTest {
     @Test
     public void parseRle() {
         //given
-        Grid grid = new Grid(7, 7);
         String rle = "#N 1 beacon\n"
                 + "#C Approximately the 32nd-most common oscillator.\n"
                 + "#C www.conwaylife.com/wiki/index.php?title=1_beacon\n"
@@ -41,7 +40,9 @@ public class GameTest {
                 + "2b2o3b$bobo3b$o2bob2o$2obo2bo$bobo3b$bo2bo2b$2b2o!";
 
         //when
-        Grid resultGrid = RleImporter.parseRle(rle);
+
+        Grid resultGrid = new Grid(7, 7);
+        resultGrid = RleImporter.parseRle(rle);
 
         //then
         assertEquals("0011000\n0101000\n1001011\n1101001\n0101000\n0100100\n0011000\n", resultGrid.toString());

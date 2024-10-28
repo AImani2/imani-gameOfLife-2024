@@ -1,17 +1,30 @@
 package imani.game;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-public class Grid {
+public class GameOfLife {
     private int[][] gameBoard;
 
     public int[][] getGameBoard() {
         return gameBoard;
     }
 
-    public Grid(int width, int height) {
+    public GameOfLife(int width, int height) {
         gameBoard = new int[width][height];
+    }
+
+    public void setCell(int x, int y, int state) {
+        gameBoard[y][x] = state;
+    }
+
+    public int getHeight() {
+        return gameBoard.length;
+    }
+
+    public int getWidth() {
+        return gameBoard[0].length;
+    }
+
+    public int getCell(int x, int y) {
+        return gameBoard[y][x]; //why y,x?
     }
 
     public String toString() {
@@ -29,16 +42,6 @@ public class Grid {
     public boolean isAlive(int x, int y) {
         return gameBoard[x][y] == 1;
     }
-
-    public void kill(int x, int y) {
-        gameBoard[x][y] = 1;
-    }
-
-    public void enliven(int x, int y) {
-        gameBoard[y][x] = 1;
-    }
-
-
 
     protected int countLiveNeighbors(int x, int y) {
         int liveNeighbors = 0;
