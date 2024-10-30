@@ -34,7 +34,7 @@ public class RleImporter {
         }
     }
 
-    private static void importRleFromUrl(String urlString) throws IOException {
+    public static void importRleFromUrl(String urlString) throws IOException {
         String rleData = getRleFromUrl(urlString);
         applyRleToGrid(rleData);
     }
@@ -44,7 +44,7 @@ public class RleImporter {
         applyRleToGrid(rleData);
     }
 
-    private static void importRleFromText(String rleText) {
+    public static void importRleFromText(String rleText) {
         applyRleToGrid(rleText);
     }
 
@@ -60,7 +60,7 @@ public class RleImporter {
         }
     }
 
-    private static void applyRleToGrid(String rle) {
+    public static void applyRleToGrid(String rle) {
         grid = parseRle(rle);
     }
 

@@ -19,7 +19,7 @@ public class GameOfLifeTest {
     }
 
     @Test
-    public void enliven() {
+    public void setCellOn() {
         //given
         GameOfLife grid = new GameOfLife(3, 3);
 
