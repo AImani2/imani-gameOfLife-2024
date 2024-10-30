@@ -23,11 +23,10 @@ class GameOfLifeControllerTest {
         GameOfLife model = mock();
         GameOfLifeComponent view = mock();
         RleImporter importer = mock();
-        GameOfLifeController controller = new GameOfLifeController(model, view, importer);
         doReturn(10).when(view).getCellSize();
         doReturn(100).when(model).getWidth();
         doReturn(100).when(model).getHeight();
-
+        GameOfLifeController controller = new GameOfLifeController(model, view, importer);
         //when
         controller.toggleCell(50, 100);
 
@@ -42,12 +41,11 @@ class GameOfLifeControllerTest {
         GameOfLife model = mock();
         GameOfLifeComponent view = mock();
         RleImporter importer = mock();
-        GameOfLifeController controller = new GameOfLifeController(model, view, importer);
         doReturn(10).when(view).getCellSize();
         doReturn(100).when(model).getWidth();
         doReturn(100).when(model).getHeight();
         doReturn(1).when(model).getCell(5, 10);
-
+        GameOfLifeController controller = new GameOfLifeController(model, view, importer);
         //when
         controller.toggleCell(50, 100);
 
