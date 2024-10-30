@@ -59,10 +59,6 @@ class GameOfLifeControllerTest {
     @Test
     public void pasteRle() throws IOException, UnsupportedFlavorException {
         //given
-        GameOfLife model = mock();
-        GameOfLifeComponent view = mock();
-        RleImporter importer = mock();
-        GameOfLifeController controller = new GameOfLifeController(model, view, importer);
         String rle = """
                 #N 1 beacon
                 #C Approximately the 32nd-most common oscillator.
@@ -70,6 +66,10 @@ class GameOfLifeControllerTest {
                 x = 7, y = 7, rule = b3/s23
                 2b2o3b$bobo3b$o2bob2o$2obo2bo$bobo3b$bo2bo2b$2b2o!
                 """;
+        GameOfLife model = mock();
+        GameOfLifeComponent view = mock();
+        RleImporter importer = mock();
+        GameOfLifeController controller = new GameOfLifeController(model, view, importer);
 
         //when
         controller.paste();
@@ -86,11 +86,11 @@ class GameOfLifeControllerTest {
     @Test
     public void pasteUrl() throws IOException, UnsupportedFlavorException {
         //given
+        String url = "https://copy.sh/life/examples/rats_synth.rle";
         GameOfLife model = mock();
         GameOfLifeComponent view = mock();
         RleImporter importer = mock();
         GameOfLifeController controller = new GameOfLifeController(model, view, importer);
-        String url = "https://copy.sh/life/examples/rats_synth.rle";
 
         //when
         controller.paste();
