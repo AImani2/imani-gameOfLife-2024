@@ -68,7 +68,7 @@ class GameOfLifeControllerTest {
         GameOfLifeComponent view = mock();
         RleImporter importer = mock();
         GameOfLifeController controller = new GameOfLifeController(model, view, importer);
-
+        doNothing().when(importer).importFromClipboard();
         //when
         controller.paste();
 
@@ -89,7 +89,7 @@ class GameOfLifeControllerTest {
         GameOfLifeComponent view = mock();
         RleImporter importer = mock();
         GameOfLifeController controller = new GameOfLifeController(model, view, importer);
-
+        doNothing().when(importer).importFromClipboard();
         //when
         controller.paste();
 
@@ -102,19 +102,21 @@ class GameOfLifeControllerTest {
         verify(view).repaint();
     }
 
-    @Test
-    public void pasteFile() {
-        //given
-        GameOfLife model = mock();
-        GameOfLifeComponent view = mock();
-        RleImporter importer = mock();
-        GameOfLifeController controller = new GameOfLifeController(model, view, importer);
-        String fileName = "1beacon.rle";
-
-        //when
-        controller.paste();
-
-        //then
-        //verify(model)
-    }
+//    @Test
+//    public void pasteFile() throws IOException, UnsupportedFlavorException {
+//        //given
+//        GameOfLife model = mock();
+//        GameOfLifeComponent view = mock();
+//        RleImporter importer = mock();
+//        GameOfLifeController controller = new GameOfLifeController(model, view, importer);
+//        String fileName = "1beacon.rle";
+//
+//        doNothing().when(importer).importFromClipboard();
+//
+//        //when
+//        controller.paste();
+//
+//        //then
+//        //verify(model)
+//    }
 }
