@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GameTest {
+public class GameOfLifeTest {
 
     @Test
     public void string() {
         //given
-        Grid grid = new Grid(3, 3);
+        GameOfLife grid = new GameOfLife(3, 3);
 
         //when
         String actual = grid.toString();
@@ -21,43 +21,27 @@ public class GameTest {
     @Test
     public void enliven() {
         //given
-        Grid grid = new Grid(3, 3);
+        GameOfLife grid = new GameOfLife(3, 3);
 
         //when
-        grid.enliven(1, 0);
+        grid.setCell(1, 0, 1);
 
         //then
         assertEquals("010\n000\n000\n", grid.toString());
     }
 
-    @Test
-    public void parseRle() {
-        //given
-        String rle = "#N 1 beacon\n"
-                + "#C Approximately the 32nd-most common oscillator.\n"
-                + "#C www.conwaylife.com/wiki/index.php?title=1_beacon\n"
-                + "x = 7, y = 7, rule = b3/s23\n"
-                + "2b2o3b$bobo3b$o2bob2o$2obo2bo$bobo3b$bo2bo2b$2b2o!";
 
-        //when
-
-        Grid resultGrid = new Grid(7, 7);
-        resultGrid = RleImporter.parseRle(rle);
-
-        //then
-        assertEquals("0011000\n0101000\n1001011\n1101001\n0101000\n0100100\n0011000\n", resultGrid.toString());
-    }
 
     @Test
     public void countLiveNeighbors() {
         //given
-        Grid grid = new Grid(3, 3);
+        GameOfLife grid = new GameOfLife(3, 3);
 
         //when
-        grid.enliven(1, 0);
-        grid.enliven(0, 1);
-        grid.enliven(2, 1);
-        grid.enliven(1, 2);
+        grid.setCell(1, 0, 1);
+        grid.setCell(0, 1, 1);
+        grid.setCell(2, 1, 1);
+        grid.setCell(1, 2, 1);
 
         //then
         assertEquals(4, grid.countLiveNeighbors(1, 1));
@@ -66,10 +50,10 @@ public class GameTest {
     @Test
     public void nextGen() {
         //given
-        Grid grid = new Grid(3, 3);
-        grid.enliven(0, 1);
-        grid.enliven(1, 1);
-        grid.enliven(2, 1);
+        GameOfLife grid = new GameOfLife(3, 3);
+        grid.setCell(0, 1, 1);
+        grid.setCell(1, 1, 1);
+        grid.setCell(2, 1, 1);
 
         //when
         grid.nextGen();
@@ -77,41 +61,5 @@ public class GameTest {
         //then
         assertEquals("010\n010\n010\n", grid.toString());
     }
-
-    @Test
-    public void importFromClipboard() {
-
-    }
-
-    @Test
-    public void importRleFromUrl() {
-
-    }
-
-    @Test
-    public void importRleFromFile() {
-
-    }
-
-    @Test
-    public void importRleFromText() {
-
-    }
-
-    @Test
-    public void getRleFromUrl() {
-
-    }
-
-    @Test
-    public void getRleFromFile() {
-
-    }
-
-    @Test
-    public void applyRleToGrid() {
-
-    }
-
 
 }

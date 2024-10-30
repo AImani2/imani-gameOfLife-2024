@@ -26,6 +26,10 @@ public class GameOfLifeComponent extends JComponent {
 
     }
 
+    public Timer getTimer() {
+        return timer;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

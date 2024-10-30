@@ -20,31 +20,38 @@ public class GameOfLifeController {
     }
 
     public void nextGeneration() {
-        grid.nextGen();
-        repaint();
+        model.nextGen();
+        view.repaint();
     }
 
     public void play() {
-        timer.setDelay(1000);
-        timer.start();
+        view.getTimer().setDelay(1000);
+        view.getTimer().start();
     }
 
     public void pause() {
-        timer.stop();
+        view.getTimer().stop();
     }
 
     public void speed() {
-        timer.stop();
-        timer.setDelay(400);
-        timer.start();
+        view.getTimer().stop();
+        view.getTimer().setDelay(400);
+        view.getTimer().start();
     }
 
 
     public void paste() {
         try {
             RleImporter.importFromClipboard();
-            grid = RleImporter.getGrid();
-            repaint();
+            GameOfLife importedGrid = RleImporter.getGrid();
+
+            for (int y = 0; y < importedGrid.getGameBoard().length; y++) {
+                for (int x = 0; x < importedGrid.getGameBoard()[y].length; x++) {
+                    model.setCell(x, y, importedGrid.getCell(x, y));
+                }
+            }
+
+            view.repaint();
         } catch (UnsupportedFlavorException | IOException e) {
             System.out.println("Error importing RLE: " + e.getMessage());
         }
